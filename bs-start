@@ -1,0 +1,25 @@
+#!/bin/bash
+PORT='4000'
+URL='"http://localhost:"'
+SRC_CHROME='/c/"Program Files (x86)"/google/Chrome/Application'
+START_SETTINGS='"--disable-extensions" "--disable-plugins" "--new-window" "--incognito"'
+START_SRC='pwd'
+# "--disable-extensions" Отключает все дополнения
+# "--disable-plugins" Отключает плагины
+# "--new-window" Открывает новое окно
+# "--incognito" Запускает хром в режиме инкогнито
+#
+echo "The current directory is:"
+pwd=$START_SRC
+
+$START_SRC;
+echo "Open link localhost:"$PORT "and Starting browser-sync"
+cd $SRC_CHROME
+start chrome.exe "--new-window" "--incognito" "http://localhost:"$PORT
+
+cd $START_SRC
+browser-sync start --server --watch --port $PORT --browser
+
+
+
+# link to man for browser-sync https://browsersync.io/docs/command-line
